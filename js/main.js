@@ -5,7 +5,7 @@ var STARTER_POKEMON_LIST = []
 var FIGHTER_POKEMON_LIST = []
 var STARTER_POKEMON;
 var STARTER_POKEMON_INDEX;
-var FIGHTER_COORDINATES = ["-2 1 -4", "-5 1 1", "3 1 -6", "5 1 -3", "1 1 7", "7 1 2", "4 1 2", "-5 1 -6", "-2 1 2"];
+var FIGHTER_COORDINATES = ["-2 1 -4", "-5 1 1", "3 1 -6", "5 1 -3", "1 1 -7", "7 1 -2", "4 1 -2", "-5 1 -6", "-2 1 -2"];
 
 window.onload = () => {
     setupGame();
@@ -49,11 +49,15 @@ const getFighterPokemon = () => {
             return data.json();
         })
         .then((response) => {
+            x = Math.floor(Math.random() * (10 - -10 + 1) + -10);
+            y = 0
+            z = Math.floor(Math.random() * (10 - -10 + 1) + -10);
+
             FIGHTER_POKEMON_LIST.push(response)
-            console.log(response.name);
+            // console.log(response.name);
             FIGHTER_POKEMONS[i].setAttribute("src", response.sprites.front_default)
-            FIGHTER_POKEMONS[i].setAttribute("position", FIGHTER_COORDINATES[randomLocation()]);
-            // console.log(FIGHTER_COORDINATES[randomLocation()])
+            FIGHTER_POKEMONS[i].setAttribute("position", FIGHTER_COORDINATES[randomCoordinates()]);
+            
         })
     }
 }
@@ -62,6 +66,6 @@ const randomPokemon = () => {
     return Math.floor(Math.random() * 807) + 1;
 }
 
-const randomLocation = () => {
+function randomCoordinates(){
     return Math.floor(Math.random() * FIGHTER_POKEMONS.length) + 1;
 }
