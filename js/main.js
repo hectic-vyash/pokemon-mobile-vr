@@ -12,7 +12,7 @@ window.onload = () => {
     getPokemon(randomPokemon());
     for (let i = 0; i < STARTER_POKEMONS.length; i++) {
         STARTER_POKEMONS[i].onmouseenter = (event) => {
-            if (STARTER_POKEMON == null){
+            if (STARTER_POKEMON == null) {
                 STARTER_POKEMON = STARTER_POKEMON_LIST[i]
                 STARTER_POKEMON_INDEX = i;
                 console.log(STARTER_POKEMON);
@@ -20,6 +20,11 @@ window.onload = () => {
                 $('.text').attr('value', 'SELECT FIGHTER POKEMON');
                 getFighterPokemon();
             }
+        }
+    }
+    for (let i = 0; i < FIGHTER_POKEMONS.length; i++) {
+        FIGHTER_POKEMONS[i].onmouseenter = (event) => {
+            getFighterPokemonStats();
         }
     }
 }
@@ -31,13 +36,13 @@ const setupGame = () => {
 const getPokemon = () => {
     for (let i = 0; i < STARTER_POKEMONS.length; i++) {
         fetch(BASE_URL + randomPokemon())
-        .then((data) => {
-            return data.json();
-        })
-        .then((response) => {
-            STARTER_POKEMON_LIST.push(response)
-            STARTER_POKEMONS[i].setAttribute("src", response.sprites.front_default)
-        })
+            .then((data) => {
+                return data.json();
+            })
+            .then((response) => {
+                STARTER_POKEMON_LIST.push(response)
+                STARTER_POKEMONS[i].setAttribute("src", response.sprites.front_default)
+            })
     }
 }
 
@@ -45,27 +50,42 @@ const getFighterPokemon = () => {
     $('.fighter_pokemon').attr('visible', 'true');
     for (let i = 0; i < FIGHTER_POKEMONS.length; i++) {
         fetch(BASE_URL + randomPokemon())
+            .then((data) => {
+                return data.json();
+            })
+            .then((response) => {
+                x = Math.floor(Math.random() * (10 - -10 + 1) + -10);
+                y = 0
+                z = Math.floor(Math.random() * (10 - -10 + 1) + -10);
+
+                FIGHTER_POKEMON_LIST.push(response)
+                // console.log(response.name);
+                FIGHTER_POKEMONS[i].setAttribute("src", response.sprites.front_default)
+                FIGHTER_POKEMONS[i].setAttribute("position", FIGHTER_COORDINATES[randomCoordinates()]);
+
+            })
+    }
+}
+
+const getFighterPokemonStats = () => {
+    fetch(BASE_URL + randomPokemon())
         .then((data) => {
             return data.json();
         })
         .then((response) => {
-            x = Math.floor(Math.random() * (10 - -10 + 1) + -10);
-            y = 0
-            z = Math.floor(Math.random() * (10 - -10 + 1) + -10);
+            console.log("pokemon: " + response.name);
 
-            FIGHTER_POKEMON_LIST.push(response)
-            // console.log(response.name);
-            FIGHTER_POKEMONS[i].setAttribute("src", response.sprites.front_default)
-            FIGHTER_POKEMONS[i].setAttribute("position", FIGHTER_COORDINATES[randomCoordinates()]);
-            
+            responseArray = response.moves
+            for (let i = 0; i < 5; i++) {
+                console.log(responseArray[i].move.name);
+            }
         })
-    }
 }
 
 const randomPokemon = () => {
     return Math.floor(Math.random() * 807) + 1;
 }
 
-function randomCoordinates(){
+function randomCoordinates() {
     return Math.floor(Math.random() * FIGHTER_POKEMONS.length) + 1;
 }
