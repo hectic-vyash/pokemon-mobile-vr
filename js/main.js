@@ -6,8 +6,11 @@ var FIGHTER_POKEMON_LIST = []
 var STARTER_POKEMON;
 var STARTER_POKEMON_INDEX;
 var FIGHTER_COORDINATES = ["-2 1 -4", "-5 1 1", "3 1 -6", "5 1 -3", "1 1 -7", "7 1 -2", "4 1 -2", "-5 1 -6", "-2 1 -2"];
+// var ABILITY = ;
 
 window.onload = () => {
+    document.getElementById('js--hud').setAttribute('visible', 'false');
+    document.getElementById('js--hud2').setAttribute('visible', 'false');
     setupGame();
     getPokemon(randomPokemon());
     for (let i = 0; i < STARTER_POKEMONS.length; i++) {
@@ -18,6 +21,8 @@ window.onload = () => {
                 console.log(STARTER_POKEMON);
                 $('.starter_pokemon').remove();
                 $('.text').attr('value', 'SELECT FIGHTER POKEMON');
+                document.getElementById('js--hud').setAttribute('visible', 'true');
+                document.getElementById('js--hud2').setAttribute('visible', 'true');
                 getFighterPokemon();
             }
         }
@@ -73,11 +78,13 @@ const getFighterPokemonStats = () => {
             return data.json();
         })
         .then((response) => {
-            console.log("pokemon: " + response.name);
-
+            document.getElementById("js--hud2__name").setAttribute('value', response.name);
             responseArray = response.moves
             for (let i = 0; i < 5; i++) {
                 console.log(responseArray[i].move.name);
+                document.getElementsByClassName('js--ability')[i].setAttribute('value', responseArray[i].move.name);
+
+
             }
         })
 }

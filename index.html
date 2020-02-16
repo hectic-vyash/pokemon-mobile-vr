@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
     <title>Pokemon Mobile VR</title>
 </head>
+
 <body>
     <a-scene>
         <a-entity environment="preset: forest"></a-entity>
         <a-camera>
-            <a-cursor color="cyan"></a-cursor>
+            <a-cursor color="cyan">
+
+                <a-plane id="js--hud2" color="black" width="2" height=".5" position="3 1.2 -5"
+                    material="opacity: 0.5; transparent: true">
+                    <a-plane color="black" width="2" height=".5" position="-1.2 -1.2 0"
+                        material="opacity: 0.5; transparent: true" rotation="0 0 90">
+                        <a-text value="Abilities" color="white" position="-.5 0 0"></a-text>
+                    </a-plane>
+                    <a-text id="js--hud2__name" value="POKEMON NAME" color="orange" position="-.6 0 0"></a-text>
+                </a-plane>
+
+                <a-plane id="js--hud" color="black" width="2" height="2" position="3 0 -5"
+                    material="opacity: 0.5; transparent: true">
+                    <a-text class="js--ability" value="hi" color="white" position="-.6 .8 0"></a-text>
+                    <a-text class="js--ability" value="hi" color="white" position="-.6 .4 0"></a-text>
+                    <a-text class="js--ability" value="hi" color="white" position="-.6 0 0"></a-text>
+                    <a-text class="js--ability" value="hi" color="white" position="-.6 -.4 0"></a-text>
+                    <a-text class="js--ability" value="hi" color="white" position="-.6 -.8 0"></a-text>
+                </a-plane>
+
+            </a-cursor>
+
         </a-camera>
         <a-text value="SELECT STARTER POKEMON" class="text" position="-1 3 -5"></a-text>
-        <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="-4 2 -5" width="2" height="1"></a-image>
+        <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="-4 2 -5" width="2" height="1">
+        </a-image>
         <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="-2 2 -5" width="2" height="1"></a-image>
         <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="0 2 -5" width="2" height="1"></a-image>
         <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="2 2 -5" width="2" height="1"></a-image>
         <a-image class="starter_pokemon" src="img/pokemon_logo.png" position="4 2 -5" width="2" height="1"></a-image>
 
-        <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="-4 2 -5" width="2" height="1"></a-image>
+        <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="-4 2 -5" width="2" height="1">
+        </a-image>
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="-2 2 -5" width="2" height="1"></a-image>
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="0 2 -5" width="2" height="1"></a-image>
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="2 2 -5" width="2" height="1"></a-image>
@@ -33,7 +60,8 @@
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="0 2 -5" width="2" height="1"></a-image>
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="2 2 -5" width="2" height="1"></a-image>
         <a-image class="fighter_pokemon" src="img/pokemon_logo.png" position="4 2 -5" width="2" height="1"></a-image>
-        
+
     </a-scene>
 </body>
+
 </html>
